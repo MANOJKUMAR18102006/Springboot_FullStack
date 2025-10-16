@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Train Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1 th:if="${train.id == null}">Create Train</h1>
+    <h1 th:if="${train.id != null}">Edit Train</h1>
+    <form th:action="${train.id == null} ? @{/trains} : @{/trains/update/{id}(id=${train.id})}" 
+    th:object="${train}" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input id="name" type="text" th:field="*{name}"/>
+        </div>
+        <div>
+            <label for="source">Source:</label>
+            <input id="source" type="text" th:field="*{source}"/>
+        </div>
+        <div>
+            <label for="destination">Destination:</label>
+            <input id="destination" type="text" th:field="*{destination}"/>
+        </div>
+        <div>
+            <label for="basePrice">Base Price:</label>
+            <input id="basePrice" type="number" th:field="*{basePrice}"/>
+        </div>
+        <div>
+            <label for="discountPercentage">Discount Percentage:</label>
+            <input id="discountPercentage" type="number" th:field="*{discountPercentage}"/>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+</div>
+</body>
+</html>
